@@ -15,4 +15,12 @@ app.get('/test', (request, response) => {
 
 })
 
+app.get('/books', (request, response) => {
+  let books = [{title:'legacy',description:'writing guide',status:true},{title:'Hobits',description:'one ring',status:false}];
+  
+
+  response.send(books)
+
+})
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
