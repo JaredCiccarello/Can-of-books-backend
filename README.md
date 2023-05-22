@@ -1,5 +1,30 @@
 # Start your own "Can of Books" App
 
+Collaborators:
+Ashley Taylor
+
+  Lab 11
+Name of feature: Movie database
+
+Estimate of time needed to complete: 3 hour
+
+Start time: 1000
+
+Finish time: 0130
+
+Actual time needed to complete: 3 1/2 hours
+
+
+Name of feature: Set up your respositories
+
+Estimate of time needed to complete: 4 hour
+
+Start time: 0430
+
+Finish time: 1000
+
+Actual time needed to complete: 5 1/2 hours
+
 This repository has starter code to begin work on creating your own online bookshelf.
 
 ## What can books do?
