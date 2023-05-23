@@ -15,12 +15,12 @@ db.once('open', _ => {
 });
 
 // This is where we require the schema into your server.
-const book = require('./bookModel/books');
+const Book = require('./bookModel/books');
 
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 app.get('/test', (request, response) => {
 
@@ -28,32 +28,31 @@ app.get('/test', (request, response) => {
 
 });
 
-const bookSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  status: {
-    type: String,
-    required: true
-  }
-});
-
 
 // ROUTES
 
 // This route is hard coded, giving us a proof of life for our URL
 // https://can-of-books-87b8.onrender.com/books <Notice how /books is at the end of this URL. This is how we access let books data.
-app.get('/books', (request, response) => {
-  let books = [
-    { title: 'legacy', description: 'writing guide', status: true }, 
-    { title: 'Hobits', description: 'one ring', status: false }
-  ];
-  response.send(books)
-});
+app.get('/books', getBooks);
+
+async function getBooks(req, res, next) {
+  try {
+                   // This talks to your database
+    let results = await Book.find({});
+    res.status(200).send(results);
+  } catch (err) {
+    next(err)
+  }
+};
+
+
+
+
+
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
+
+// let books = [
+//   { title: 'legacy', description: 'writing guide', status: true }, 
+//   { title: 'Hobits', description: 'one ring', status: false }
+// ];
