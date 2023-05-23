@@ -33,8 +33,14 @@ app.get('/test', (request, response) => {
 
 // This route is hard coded, giving us a proof of life for our URL
 // https://can-of-books-87b8.onrender.com/books <Notice how /books is at the end of this URL. This is how we access let books data.
-app.get('/books', getBooks);
 
+// This will give you "hello there" until you look for /books
+app.get('/', (req, res) =>{
+  res.send('Hello there');
+})
+
+// Using /books will render the request below
+app.get('/books', getBooks);
 async function getBooks(req, res, next) {
   try {
                    // This talks to your database
