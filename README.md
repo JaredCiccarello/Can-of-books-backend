@@ -1,22 +1,32 @@
 # Start your own "Can of Books" App
 
 Is it a problem if it doesn't say Mongoose is connected?
-Does my env need to have a name attached at the end of it?
+What am I supposed to be submitting for my deployed site?
 
-
-Collaborators:
-Ashley Taylor
-
-  Lab 11
-Name of feature: 
+  Lab 13
+Name of feature: Storage
 
 Estimate of time needed to complete: 3 hour
 
 Start time: 0700
 
-Finish time: 
+Finish time: 1030
 
-Actual time needed to complete: 
+Actual time needed to complete: 3 1/2
+
+Collaborators:
+Ashley Taylor
+
+  Lab 11
+Name of feature: Storage
+
+Estimate of time needed to complete: 3 hour
+
+Start time: 0700
+
+Finish time: 1030
+
+Actual time needed to complete: 3 1/2
 
 
 Name of feature: Set up your respositories
@@ -52,6 +62,7 @@ What will your team do if one person is taking over the project and not letting 
 How will you approach each other and the challenge of building an application knowing that it is impossible for two people to be at the exact same place in understanding and skill level?
 
 
+
 # Can of Books
 
 **Author**: Ashley Taylor, Jared Ciccarello
@@ -76,6 +87,8 @@ How will you approach each other and the challenge of building an application kn
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+
 
 
 This repository has starter code to begin work on creating your own online bookshelf.

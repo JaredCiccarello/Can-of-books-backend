@@ -46,10 +46,13 @@ app.get('/books', getBooks);
 app.post('/books', postBooks);
 //This route is for sending the ID of a book to delete as a path paremeter
 app.delete('/books/:id', deleteBooks)
+// This route is for putting the ID 
+app.put('/books/:id', putBooks)
+
 
 async function getBooks(req, res, next) {
   try {
-                   // This talks to your database
+    // This talks to your database
     let results = await Book.find({});
     res.status(200).send(results);
   } catch (err) {
@@ -62,30 +65,57 @@ async function postBooks(req, res, next) {
   try {
     let createdBook = await Book.create(req.body);
     res.status(200).send(createdBook);
-  } catch(err) {
+  } catch (err) {
     next(err);
+  }
+};
+
+async function deleteBooks(req, res, next) {
+  try {
+    //extracting value where ID is.
+    let id = req.params.id;
+
+
+    // console.log req objects I.E. (req)
+
+    //deleting book from database
+    await Book.findByIdAndDelete(id);
+
+    // The error code represents an OKAY response but, for our purposes it gives us an indicator that the command has gone through successfully.
+    // We must have a string because we cannot always depend on our model of Book.find to return something for a delete method.
+    res.status(200).send('Book No Longer Exists');
+
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+async function putBooks(req, res, next) {
+  try {
+    let id = req.params.id;
+    let bookFromReq = req.body;
+    let options = {
+      new: true,
+      overWrite: true
     }
-  };
 
-  async function deleteBooks(req, res, next) {
-    try {
-      //extracting value where ID is.
-      let id = req.params.id;
+    // findByIdAndUpdate takes in 3 arguments
+    // ID, data object, and options object
+    // id, bookFromReq, and options
+    let updatedBook = await Book.findByIdAndUpdate(id, bookFromReq, options);
 
-      //deleting book from database
-      await Book.findByIdAndDelete(id);
-
-      res.send('Book No Longer Exists');
-
-    } catch(err) {
-      next(err);
-    }
-  }; 
-  
-
-
-
-
+    res.status(200).send(updatedBook);
+  } catch (err) {
+    next(err);
+  }
+};
+// Once we are done we can test if this works in our thunder client.
+// We use GET, http:localhost:3001
+// We take the object that we want to edit and put it into the JSON body
+// Next we take the ID and put it into our URL
+// We make the necessary changes and hit send
+// Finally we do another GET request to see if our update made the necessary changes. If yes, we were successful.
 
 
 
