@@ -17,9 +17,15 @@ db.once('open', _ => {
 // This is where we require the schema into your server.
 const Book = require('./bookModel/books');
 
+//Implementing express
 const app = express();
-app.use(cors());
 
+//middleware
+app.use(cors());
+//enables us to recieve json data from a request
+app.use(express.json());
+
+//Defining PORT and validating env
 const PORT = process.env.PORT || 3002;
 
 app.get('/test', (request, response) => {
@@ -34,13 +40,13 @@ app.get('/test', (request, response) => {
 // This route is hard coded, giving us a proof of life for our URL
 // https://can-of-books-87b8.onrender.com/books <Notice how /books is at the end of this URL. This is how we access let books data.
 
-// This will give you "hello there" until you look for /books
-app.get('/', (req, res) =>{
-  res.send('Hello there');
-})
-
-// Using /books will render the request below
+//This route is for accessing the database
 app.get('/books', getBooks);
+//This route is for adding a whole new book object when a new request comes in
+app.post('/books', postBooks);
+//This route is for sending the ID of a book to delete as a path paremeter
+app.delete('/books/:id', deleteBooks)
+
 async function getBooks(req, res, next) {
   try {
                    // This talks to your database
@@ -50,6 +56,34 @@ async function getBooks(req, res, next) {
     next(err)
   }
 };
+
+//adding a new book object to database
+async function postBooks(req, res, next) {
+  try {
+    let createdBook = await Book.create(req.body);
+    res.status(200).send(createdBook);
+  } catch(err) {
+    next(err);
+    }
+  };
+
+  async function deleteBooks(req, res, next) {
+    try {
+      //extracting value where ID is.
+      let id = req.params.id;
+
+      //deleting book from database
+      await Book.findByIdAndDelete(id);
+
+      res.send('Book No Longer Exists');
+
+    } catch(err) {
+      next(err);
+    }
+  }; 
+  
+
+
 
 
 
