@@ -3,6 +3,16 @@
 Is it a problem if it doesn't say Mongoose is connected?
 What am I supposed to be submitting for my deployed site?
 
+  Lab 13
+Name of feature: Storage
+
+Estimate of time needed to complete: 3 hour
+
+Start time: 0700
+
+Finish time: 1030
+
+Actual time needed to complete: 3 1/2
 
 Collaborators:
 Ashley Taylor
