@@ -73,7 +73,7 @@ async function postBooks(req, res, next) {
 async function deleteBooks(req, res, next) {
   try {
     let id = req.params.id;
-    await Books.findByIdAndDelete(id);
+    await Book.findByIdAndDelete(id);
     res.status(200).send('Book Deleted');
   } catch (err) {
     next(err);
@@ -88,7 +88,7 @@ async function putBooks(req, res, next) {
       new: true,
       overwrite: true
     };
-    let updatedBook = await Books.findByIdAndUpdate(id, bookFromReq, options);
+    let updatedBook = await Book.findByIdAndUpdate(id, bookFromReq, options);
     res.status(200).send(updatedBook);
   } catch (err) {
     next(err)
