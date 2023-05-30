@@ -55,7 +55,7 @@ async function getBooks(req, res, next) {
     // This talks to your database
     let results = await Book.find({});
     res.status(200).send(results);
-  } catch (err) {
+  } catch (err) {cd 
     next(err)
   }
 };
@@ -72,24 +72,13 @@ async function postBooks(req, res, next) {
 
 async function deleteBooks(req, res, next) {
   try {
-    //extracting value where ID is.
     let id = req.params.id;
-
-
-    // console.log req objects I.E. (req)
-
-    //deleting book from database
     await Book.findByIdAndDelete(id);
-
-    // The error code represents an OKAY response but, for our purposes it gives us an indicator that the command has gone through successfully.
-    // We must have a string because we cannot always depend on our model of Book.find to return something for a delete method.
-    res.status(200).send('Book No Longer Exists');
-
+    res.status(200).send('Book Deleted');
   } catch (err) {
     next(err);
   }
-};
-
+}
 
 async function putBooks(req, res, next) {
   try {
@@ -97,19 +86,14 @@ async function putBooks(req, res, next) {
     let bookFromReq = req.body;
     let options = {
       new: true,
-      overWrite: true
-    }
-
-    // findByIdAndUpdate takes in 3 arguments
-    // ID, data object, and options object
-    // id, bookFromReq, and options
+      overwrite: true
+    };
     let updatedBook = await Book.findByIdAndUpdate(id, bookFromReq, options);
-
     res.status(200).send(updatedBook);
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 // Once we are done we can test if this works in our thunder client.
 // We use GET, http:localhost:3001
 // We take the object that we want to edit and put it into the JSON body
